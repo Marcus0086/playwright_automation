@@ -1,6 +1,9 @@
 
 # Monorepo with FastAPI Backend and Next.js Frontend
 
+<img width="1710" alt="image" src="https://github.com/user-attachments/assets/175cf6ac-e87d-4d64-8d4b-1403e0b1bae2">
+
+
 ## Overview
 
 This monorepo combines two popular frameworks:
