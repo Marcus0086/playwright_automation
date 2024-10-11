@@ -1,7 +1,7 @@
 from playwright.async_api import async_playwright
 
 from .constants import USER_AGENT, BROWSER_ARGS
-from ..schema.browser import FolderData, FolderType
+from ..schema.browser import FolderData
 
 
 class DropboxAutomation:
@@ -76,29 +76,28 @@ class DropboxAutomation:
         """
 
         folder_name = folder_data.folder_name
-        if folder_data.folder_type == FolderType.BASIC:
-            await self.page.click('button[aria-label="Create"]')
+        await self.page.click('button[aria-label="Create"]')
 
-            # Step 2: Click on the "Folder" button in the submenu
-            await self.page.wait_for_selector(
-                "#browse-view-action-bar-create-menu-folder-submenu-button"
-            )
-            await self.page.click(
-                "#browse-view-action-bar-create-menu-folder-submenu-button"
-            )
+        # Step 2: Click on the "Folder" button in the submenu
+        await self.page.wait_for_selector(
+            "#browse-view-action-bar-create-menu-folder-submenu-button"
+        )
+        await self.page.click(
+            "#browse-view-action-bar-create-menu-folder-submenu-button"
+        )
 
-            # Step 3: Click to open the modal where you enter the folder name
-            await self.page.wait_for_selector('[data-testid="Folder"]')
-            await self.page.click('[data-testid="Folder"]')
+        # Step 3: Click to open the modal where you enter the folder name
+        await self.page.wait_for_selector('[data-testid="Folder"]')
+        await self.page.click('[data-testid="Folder"]')
 
-            # Step 4: Wait for the input to appear, then fill in the folder name
-            await self.page.wait_for_selector(
-                'input[aria-label="Folder name input"]', timeout=60000
-            )
-            await self.page.fill('input[aria-label="Folder name input"]', folder_name)
+        # Step 4: Wait for the input to appear, then fill in the folder name
+        await self.page.wait_for_selector(
+            'input[aria-label="Folder name input"]', timeout=60000
+        )
+        await self.page.fill('input[aria-label="Folder name input"]', folder_name)
 
-            # Step 5: Press "Enter" to confirm
-            await self.page.press('input[aria-label="Folder name input"]', "Enter")
+        # Step 5: Press "Enter" to confirm
+        await self.page.press('input[aria-label="Folder name input"]', "Enter")
 
-            # Optional: Add a brief wait to ensure the folder creation completes
-            await self.page.wait_for_timeout(5000)
+        # Optional: Add a brief wait to ensure the folder creation completes
+        await self.page.wait_for_timeout(5000)

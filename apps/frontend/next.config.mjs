@@ -4,6 +4,7 @@ const nextConfig = {
     env: {
         VNC_URL: process.env.VNC_URL,
         BACKEND_URL: process.env.BACKEND_URL,
+        BACKEND_URL_INTERNAL: process.env.BACKEND_URL_INTERNAL,
     }
 };
 
