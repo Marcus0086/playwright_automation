@@ -38,6 +38,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libdrm2 \
     tesseract-ocr \
     poppler-utils \
+    dbus \
     && rm -rf /var/lib/apt/lists/*
 
 
@@ -74,6 +75,10 @@ COPY . /app
 
 # Start Xvfb, x11vnc (without password), novnc_proxy, and run your FastAPI app
 CMD sh -c "\
+    pkill Xvfb || true && \
+    pkill x11vnc || true && \
+    pkill novnc_proxy || true && \
+    rm -rf /tmp/.X11-unix/* && \
     nohup Xvfb $DISPLAY -screen 0 ${GEOMETRY}x24 -dpi $SCREEN_DPI +extension RANDR >/dev/null 2>&1 & \
     sleep 2 && \
     nohup x11vnc -display $DISPLAY -forever -shared -rfbport 5900 -nopw >/dev/null 2>&1 & \
