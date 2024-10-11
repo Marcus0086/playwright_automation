@@ -35,6 +35,7 @@ The backend runs a headful (visible) browser instance that you can control. You 
    ```bash
    git clone https://github.com/Marcus0086/playwright_automation
    cd playwright_automation
+   mv .env.example .env
    ```
 
 2. **Build and start the project**:

@@ -1,6 +1,6 @@
 "use server"
 
-import { BACKEND_URL } from "@/lib/config";
+import { BACKEND_URL_INTERNAL } from "@/lib/config";
 
 /**
  * Creates a folder in Dropbox.
@@ -11,7 +11,7 @@ import { BACKEND_URL } from "@/lib/config";
 const createFolder = async (formData: FormData): Promise<void>   => {
     const folder_name = formData.get("folder_name") as string;
     console.log(folder_name);
-    const response = await fetch(`${BACKEND_URL}/dropbox/create-folder`, {
+    const response = await fetch(`${BACKEND_URL_INTERNAL}/dropbox/create-folder`, {
         method: "POST",
         body: JSON.stringify({ folder_name: folder_name }),
     });
