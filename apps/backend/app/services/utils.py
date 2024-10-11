@@ -56,6 +56,7 @@ class DropboxAutomation:
             await self.context.add_cookies(cookies)
             self.page = await self.context.new_page()
             self.page.set_default_navigation_timeout(60000)
+            await self.page.goto("https://www.google.com")
 
     async def close_browser(self):
         await self.browser.close()
