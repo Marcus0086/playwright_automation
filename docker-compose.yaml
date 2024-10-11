@@ -1,0 +1,8 @@
+services:
+  browser:
+    build:
+      context: ./apps/backend
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
+      - 6080:6080
