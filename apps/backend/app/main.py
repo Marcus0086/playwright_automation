@@ -1,5 +1,7 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.routers.browser import router as browser_router
 from .services.utils import DropboxAutomation
 
@@ -28,6 +30,14 @@ async def browser(app: FastAPI):
 
 
 app = FastAPI(lifespan=browser)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
