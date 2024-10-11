@@ -13,7 +13,10 @@ const createFolder = async (formData: FormData): Promise<void>   => {
     console.log(folder_name);
     const response = await fetch(`${BACKEND_URL_INTERNAL}/dropbox/create-folder`, {
         method: "POST",
-        body: JSON.stringify({ folder_name: folder_name }),
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({"folder_name": folder_name}),
     });
     if (response.ok) {
         const data = await response.json();
