@@ -15,7 +15,12 @@ export default function Component() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCreatingFolder, setIsCreatingFolder] = useState(false);
 
-  const handleLogin = async () => {
+  /**
+   * Opens the Dropbox login page in the same window.
+   *
+   * @returns {Promise<void>} - A promise that resolves when the user is logged
+   */
+  const handleLogin = async (): Promise<void> => {
     setIsLoggingIn(true);
     try {
       const response = await fetch(`${BACKEND_URL}/dropbox`, {
@@ -33,7 +38,13 @@ export default function Component() {
     }
   };
 
-  const handleCreateFolder = async (formData: FormData) => {
+  /**
+   * Handles the creation of a folder in Dropbox.
+   *
+   * @param {FormData} formData - The form data containing the folder name.
+   * @returns {Promise<void>} - A promise that resolves when the folder is created.
+   */
+  const handleCreateFolder = async (formData: FormData): Promise<void> => {
     setIsCreatingFolder(true);
     try {
       createFolder(formData);
@@ -70,6 +81,7 @@ export default function Component() {
                 Open Dropbox
               </Button>
               <hr />
+              {/* Create Folder Form */}
               <form
                 action={handleCreateFolder}
                 className="flex-col w-full max-w-sm items-center space-y-2"
@@ -96,7 +108,7 @@ export default function Component() {
         </div>
       </aside>
 
-      {/* Main Content */}
+      {/* Browser Live view */}
       <main className="flex-1 flex flex-col overflow-hidden">
         <header className="bg-white dark:bg-gray-800 shadow-sm p-4">
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
