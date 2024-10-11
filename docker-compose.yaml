@@ -1,8 +1,16 @@
 services:
-  browser:
+  browser_backend:
     build:
       context: ./apps/backend
       dockerfile: ./Dockerfile
     ports:
       - 8000:8000
       - 6080:6080
+  browser_frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - browser_backend
