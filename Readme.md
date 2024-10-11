@@ -30,8 +30,8 @@ The backend runs a headful (visible) browser instance that you can control. You 
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/Marcus0086/playwright_automation
+   cd playwright_automation
    ```
 
 2. **Build and start the project**:
